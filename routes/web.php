@@ -15,15 +15,15 @@ Route::get('/', function () {
     return view('front.layouts.main');
 });
 
+Route::get('/search', 'SearchController@search');
+
 Auth::routes();
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 Route::resource('posts', 'PostController');
 Route::resource('comments', 'CommentController');
 
-Route::get('/admin', function () {
-    return view('admin.home');
-})->middleware('is_admin');
+Route::get('/admin', 'DashboardController@index')->middleware('is_admin');
 
 Route::get('/admin/equipment', 'EquipmentController@index')->middleware('is_admin');
 Route::get('/admin/equipment/create', 'EquipmentController@create')->middleware('is_admin');

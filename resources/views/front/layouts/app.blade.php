@@ -60,11 +60,14 @@
         <a href="/register" class="linkedin">Register</a>
         @endguest
       </div>
-      <form action="" style="margin-top:20px; display:block;" class="clear" method="get">
+      <form action="/search" style="margin-top:20px; display:block;" class="clear" method="get">
         <div class="input-group">
           <input name="search" class="form-control border-secondary py-2" type="search" placeholder="What you are looking for?">
-          <select>
-              <option>Search</option>
+          <select name="type">
+              <option>Posts</option>
+              <option>Wallets</option>
+              <option>Companies</option>
+              <option>Equipments</option>
           </select>
           <div class="input-group-append">
               <button class="btn btn-outline-secondary" type="submit">
