@@ -110,4 +110,8 @@ class ProfileController extends Controller
         return redirect()->back();
       }
     }
+
+    public function notifications_new(){
+      return view('front.profile.notifications_new');
+    }
 }

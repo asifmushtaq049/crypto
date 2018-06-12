@@ -64,7 +64,7 @@
         <a class="" href="/admin">Admin Panel</a>
         @endif
         @if(Auth::user()->notifications->count() > 0)
-          <a href="/profile/notification" class="linkedin">Notifications <span class="badge badge-danger">{{Auth::user()->notifications->count()}}</span></a>
+          <a href="/profile/notifications/new" class="linkedin">Notifications <span class="badge badge-danger">{{Auth::user()->notifications->count()}}</span></a>
         @endif
         @endauth
 

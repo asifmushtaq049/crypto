@@ -82,3 +82,5 @@ Route::get('/profile/password', 'ProfileController@password')->middleware('auth'
 Route::post('/profile/password', 'ProfileController@update_password')->middleware('auth');
 Route::get('/profile/{i}', 'ProfileController@view');
 Route::post('/profile/{i}', 'ProfileController@follow');
+
+Route::get('/profile/notifications/new', 'ProfileController@notifications_new');
