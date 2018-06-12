@@ -27,7 +27,18 @@
   				<!-- END SIDEBAR USER TITLE -->
   				<!-- SIDEBAR BUTTONS -->
           <div class="profile-userbuttons">
-  					<button type="button" class="btn btn-primary btn-sm twitter-color">Follow</button>
+            <form action="" method="post">
+              @csrf
+              @if(Auth::check())
+                @if(Auth::user()->isFollowing($data['user']->id))
+      					<button type="submit" class="btn btn-success btn-sm">UnFollow</button>
+                @else
+                <button type="submit" class="btn btn-primary btn-sm twitter-color">@Follow</button>
+                @endif
+              @else
+              <a href="/login" class="btn btn-primary btn-sm twitter-color">Login to Follow</a>
+              @endif
+            </form>
   				</div>
   				<!-- END SIDEBAR BUTTONS -->
 

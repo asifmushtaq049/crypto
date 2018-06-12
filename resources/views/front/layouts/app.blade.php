@@ -59,23 +59,32 @@
         <a href="/login" class="linkedin">Login</a>
         <a href="/register" class="linkedin">Register</a>
         @endguest
+        @auth
+        @if(Auth::user()->isAdmin())
+        <a class="" href="/admin">Admin Panel</a>
+        @endif
+        @if(Auth::user()->notifications->count() > 0)
+          <a href="/profile/notification" class="linkedin">Notifications <span class="badge badge-danger">{{Auth::user()->notifications->count()}}</span></a>
+        @endif
+        @endauth
+
       </div>
-      <form action="/search" style="margin-top:20px; display:block;" class="clear" method="get">
-        <div class="input-group">
-          <input name="search" class="form-control border-secondary py-2" type="search" placeholder="What you are looking for?">
-          <select name="type">
-              <option>Posts</option>
-              <option>Wallets</option>
-              <option>Companies</option>
-              <option>Equipments</option>
-          </select>
-          <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit">
-                  <i class="fa fa-search"></i>
-              </button>
-          </div>
-      </div>
-    </form>
+      <!-- <form action="/search" style="margin-top:20px; display:block;" class="clear" method="get">
+          <div class="input-group">
+            <input name="search" class="form-control border-secondary py-2" type="search" placeholder="What you are looking for?">
+            <select name="type">
+                <option>Posts</option>
+                <option>Wallets</option>
+                <option>Companies</option>
+                <option>Equipments</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+      </form> -->
     </div>
   </section>
 
@@ -109,7 +118,7 @@
             </ul></li>
           <li class="menu-has-children"><a href="/wallet">WALLETS</a>
             <ul>
-              <li><a href="/wallet/top-rated">TOP RATED WALLETS</a></li>
+              <li><a href="/wallet/top">TOP RATED WALLETS</a></li>
             </ul></li>
           <!-- <li class="menu-has-children"><a href="#team">ANALYSIS</a>
             <ul>

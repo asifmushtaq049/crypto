@@ -66,6 +66,7 @@ Route::get('/mining/company/{c}', 'CompanyController@detail');
 Route::post('/mining/company/{c}', 'CompanyController@comment');
 
 Route::get('/wallet', 'WalletController@front');
+Route::get('/wallet/top', 'WalletController@top');
 Route::get('/wallet/{w}', 'WalletController@detail');
 Route::post('/wallet/{w}', 'WalletController@comment');
 
@@ -73,8 +74,11 @@ Route::get('/blog', 'PostController@blog');
 
 // Profile Routes
 Route::get('/profile', 'ProfileController@index')->middleware('auth');
+Route::get('/profile/following', 'ProfileController@following')->middleware('auth');
+Route::get('/profile/followers', 'ProfileController@followers')->middleware('auth');
 Route::get('/profile/setting', 'ProfileController@setting')->middleware('auth');
 Route::post('/profile/setting', 'ProfileController@update')->middleware('auth');
 Route::get('/profile/password', 'ProfileController@password')->middleware('auth');
 Route::post('/profile/password', 'ProfileController@update_password')->middleware('auth');
 Route::get('/profile/{i}', 'ProfileController@view');
+Route::post('/profile/{i}', 'ProfileController@follow');

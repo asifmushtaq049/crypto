@@ -36,12 +36,19 @@
               <li class="nav-item @yield('home')">
                 <a class="nav-link" href="/profile"><i class="fa fa-home"></i> Home <span class="sr-only">(current)</span></a>
               </li>
+              <li class="nav-item @yield('following')">
+                <a class="nav-link" href="/profile/following"><i class="fa fa-user"></i> Following <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item @yield('followers')">
+                <a class="nav-link" href="/profile/followers"><i class="fa fa-user"></i> My Followers <span class="sr-only">(current)</span></a>
+              </li>
               <li class="nav-item @yield('setting')">
                 <a class="nav-link" href="/profile/setting"><i class="fa fa-cog"></i> Setting</a>
               </li>
               <li class="nav-item @yield('password')">
                 <a class="nav-link" href="/profile/password"><i class="fa fa-key"></i> Change Password</a>
               </li>
+
             </ul>
           </div>
   				<!-- END MENU -->

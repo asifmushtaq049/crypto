@@ -6,6 +6,7 @@ use App\Wallet;
 use App\WalletComment;
 use App\WalletRating;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -25,6 +26,18 @@ class WalletController extends Controller
     {
         //
         $wallets = Wallet::orderBy('created_at','desc')->get();
+        return view('front.wallet.wallet')->with('wallets', $wallets);
+    }
+
+    public function top()
+    {
+        $wallets = Wallet::select(DB::raw('wallets.*, count(wallet_ratings.id) as aggregate'))
+            ->leftJoin('wallet_ratings', 'wallet_ratings.wallet_id', '=', 'wallets.id')
+            ->groupBy('wallets.id')
+            ->orderBy('aggregate', 'desc')
+            ->limit(10)
+            ->get();
+
         return view('front.wallet.wallet')->with('wallets', $wallets);
     }
 

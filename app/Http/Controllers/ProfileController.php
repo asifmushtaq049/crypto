@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\User;
+use App\Follower;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,15 @@ class ProfileController extends Controller
     public function setting(){
       return view('front.profile.setting');
     }
+
+    public function following(){
+      return view('front.profile.following');
+    }
+
+    public function followers(){
+      return view('front.profile.followers');
+    }
+
 
     public function update(Request $request){
       $rules = array(
@@ -85,5 +95,19 @@ class ProfileController extends Controller
       $user = User::find($id);
       $posts = Post::where('user_id', $id)->where('type','post')->orderBy("created_at","desc")->get();
       return view('front.profile.view')->with('data', ['user'=>$user, 'posts' => $posts]);
+    }
+
+    public function follow($id){
+      if(auth()->user()->isFollowing($id)){
+        $follower = Follower::where('follower_id', auth()->user()->id)->where('user_id', $id);
+        $follower->delete();
+        return redirect()->back();
+      }
+      $follower = new Follower;
+      $follower->user_id = $id;
+      $follower->follower_id = auth()->user()->id;
+      if($follower->save()){
+        return redirect()->back();
+      }
     }
 }

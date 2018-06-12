@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Comment;
+use App\Follower;
+use App\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -95,7 +97,15 @@ class PostController extends Controller
             $post->user_id = auth()->user()->id;
             $post->save();
 
-            // redirect
+            foreach(auth()->user()->followers as $key => $value){
+              $notification = new Notification;
+              $notification->user_id = auth()->user()->id;
+              $notification->follower_id = $value->follower->id;
+              $notification->post_id = $post->id;
+              $notification->save();
+            }
+
+            // // redirect
             Session::flash('flash_message', 'Successfully created Post!');
             return redirect()->back();
         }
