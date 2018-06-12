@@ -43,7 +43,7 @@
           @foreach($data['comments'] as $key => $comment)
           <div class="comment">
             <div class="comment-head">
-              {{$comment->user->name}}
+              <a href="/profile/{{$comment->user->id}}">{{$comment->user->name}}</a>
             </div>
             <div class="comment-text">
               {{$comment->text}}

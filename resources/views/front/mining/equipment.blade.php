@@ -18,7 +18,7 @@
             <h2>{{$equipment->name}} <a href="/mining/equipment/{{$equipment->id}}" class="btn btn-info pull-right">READ MORE >></a></h2>
           </div>
           <div class="col-sm first">
-            <img src="https://www.cryptocompare.com/media/30001977/antminer-x3.png?anchor=center&mode=crop&width=100&height=100" />
+            <img src="{{$equipment->image}}" width="100" height="100" />
           </div>
           <div class="col-sm">
             Price<br/>

@@ -29,7 +29,7 @@ class Equipment extends Migration
             $table->string('payback_period');
             $table->string('cost_per_kh_s');
             $table->string('annual_return_percentage');
-            $table->string('image');
+            $table->string('image')->default('/img/default.png');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

@@ -17,7 +17,7 @@
                   {{ Session::get('flash_error') }}
               </div>
           @endif
-            <form role="form" method="post">
+            <form role="form" method="post" enctype="multipart/form-data">
               @csrf
               <input type="hidden" name="_method" value="PUT">
                 <div class="form-group">
@@ -67,6 +67,11 @@
                 <div class="form-group clear">
                     <label for="tx">Equipment Detail</label>
                     <textarea id="tx" class="form-control" rows="7" name="detail">{{$equipment->detail}}</textarea>
+                </div>
+                <div class="form-group">
+                  <label for="image">Equipment Image</label>
+                  <input type="file" class="form-control" name="image" id="image" accept="image/gif, image/jpeg, image/png, image/JPEG, image/jpg, image/PNG" />
+                  <img id="img" src="{{$equipment->image}}" width="200" height="150" class="row" />
                 </div>
                 <button type="submit" class="btn btn-primary">Update Equipment</button>
             </form>

@@ -19,7 +19,7 @@ class Post extends Migration
             $table->string('title');
             $table->text('detail');
             $table->string('type');
-            $table->string('image');
+            $table->string('image')->default('/img/default.png');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

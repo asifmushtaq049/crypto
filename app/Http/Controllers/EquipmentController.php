@@ -69,6 +69,14 @@ class EquipmentController extends Controller
             $post->payback_period      = Input::get('payback_period');
             $post->cost_per_kh_s      = Input::get('cost_per_kh_s');
             $post->annual_return_percentage      = Input::get('annual_return_percentage');
+            if (Input::has('image')) {
+              $image = Input::file('image');
+              $name = str_slug($request->name.$image->getRealPath()).'.'.$image->getClientOriginalExtension();
+              $destinationPath = public_path('/img/equipments');
+              $imagePath = $destinationPath. "/".  $name;
+              $image->move($destinationPath, $name);
+              $post->image = "/img/equipments/".$name;
+            }
             $post->user_id = auth()->user()->id;
             $post->save();
 
@@ -118,6 +126,14 @@ class EquipmentController extends Controller
             $post->payback_period      = Input::get('payback_period');
             $post->cost_per_kh_s      = Input::get('cost_per_kh_s');
             $post->annual_return_percentage      = Input::get('annual_return_percentage');
+            if (Input::has('image')) {
+              $image = Input::file('image');
+              $name = str_slug($request->name.$image->getRealPath()).'.'.$image->getClientOriginalExtension();
+              $destinationPath = public_path('/img/equipments');
+              $imagePath = $destinationPath. "/".  $name;
+              $image->move($destinationPath, $name);
+              $post->image = "/img/equipments/".$name;
+            }
             $post->user_id = auth()->user()->id;
             $post->update();
 

@@ -21,6 +21,7 @@
                           <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                               <thead>
                                   <tr>
+                                      <th>Image</th>
                                       <th>Name</th>
                                       <th>Location</th>
                                       <th>Action</th>
@@ -30,6 +31,7 @@
 
                                   @foreach($companies as $key => $value)
                                   <tr class="odd gradeX">
+                                    <td><img src="{{$value->image}}" width="80" height="80" /></td>
                                       <td>{{$value->name}}</td>
                                       <td>{{$value->location}}</td>
                                       <th>

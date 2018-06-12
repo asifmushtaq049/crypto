@@ -55,6 +55,7 @@ class WalletController extends Controller
     {
         // validate
         // read more on validation at http://laravel.com/docs/validation
+
         $rules = array(
             'name'       => 'required',
             'website'      => 'required',
@@ -70,15 +71,24 @@ class WalletController extends Controller
         } else {
             // store
 
+
+
             $post = new Wallet;
             $post->name       = Input::get('name');
             $post->detail      = Input::get('detail');
             $post->coins      = Input::get('coins');
+            if (Input::has('image')) {
+              $image = Input::file('image');
+              $name = str_slug($request->name.$image->getRealPath()).'.'.$image->getClientOriginalExtension();
+              $destinationPath = public_path('/img/wallets');
+              $imagePath = $destinationPath. "/".  $name;
+              $image->move($destinationPath, $name);
+              $post->image = "/img/wallets/".$name;
+            }
             $post->website      = Input::get('website');
             $post->user_id = auth()->user()->id;
             $post->save();
 
-            // redirect
             Session::flash('flash_message', 'Successfully Added!');
             return redirect()->back();
         }
@@ -115,6 +125,14 @@ class WalletController extends Controller
             $post->name       = Input::get('name');
             $post->detail      = Input::get('detail');
             $post->coins      = Input::get('coins');
+            if (Input::has('image')) {
+              $image = Input::file('image');
+              $name = str_slug($request->name.$image->getRealPath()).'.'.$image->getClientOriginalExtension();
+              $destinationPath = public_path('/img/wallets');
+              $imagePath = $destinationPath. "/".  $name;
+              $image->move($destinationPath, $name);
+              $post->image = "/img/wallets/".$name;
+            }
             $post->website      = Input::get('website');
             $post->user_id = auth()->user()->id;
             $post->update();

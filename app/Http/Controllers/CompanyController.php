@@ -60,6 +60,14 @@ class CompanyController extends Controller
             $post->name       = Input::get('name');
             $post->detail      = Input::get('detail');
             $post->location      = Input::get('location');
+            if (Input::has('image')) {
+              $image = Input::file('image');
+              $name = str_slug($request->name.$image->getRealPath()).'.'.$image->getClientOriginalExtension();
+              $destinationPath = public_path('/img/companies');
+              $imagePath = $destinationPath. "/".  $name;
+              $image->move($destinationPath, $name);
+              $post->image = "/img/companies/".$name;
+            }
             $post->website      = Input::get('website');
             $post->user_id = auth()->user()->id;
             $post->save();
@@ -100,6 +108,14 @@ class CompanyController extends Controller
             $post->name       = Input::get('name');
             $post->detail      = Input::get('detail');
             $post->location      = Input::get('location');
+            if (Input::has('image')) {
+              $image = Input::file('image');
+              $name = str_slug($request->name.$image->getRealPath()).'.'.$image->getClientOriginalExtension();
+              $destinationPath = public_path('/img/companies');
+              $imagePath = $destinationPath. "/".  $name;
+              $image->move($destinationPath, $name);
+              $post->image = "/img/companies/".$name;
+            }
             $post->website      = Input::get('website');
             $post->user_id = auth()->user()->id;
             $post->update();

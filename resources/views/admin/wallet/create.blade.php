@@ -6,7 +6,7 @@
 
 <div class="col-sm-12">
     <div class="row">
-        <div class="col-lg-10 margin-bottom-20">
+        <div class="col-lg-10 margin-bottom-30">
           @if(Session::has('flash_message'))
               <div class="alert alert-success">
                   {{ Session::get('flash_message') }}
@@ -17,7 +17,7 @@
                   {{ Session::get('flash_error') }}
               </div>
           @endif
-            <form role="form" method="post">
+            <form role="form" method="post" enctype="multipart/form-data">
               @csrf
                 <div class="form-group">
                     <label>Wallet Name *</label>
@@ -36,11 +36,18 @@
                     <label for="tx">Wallet Detail</label>
                     <textarea id="tx" class="form-control" rows="7" name="detail"></textarea>
                 </div>
+                <div class="form-group">
+                  <label for="image">Wallet Image</label>
+                  <input type="file" class="form-control" name="image" id="image" accept="image/gif, image/jpeg, image/png, image/JPEG, image/jpg, image/PNG" />
+                  <img id="img" width="200" height="150" class="row" />
+                </div>
                 <button type="submit" class="btn btn-primary">Add Wallet</button>
                 <button type="reset" class="btn btn-default">Reset Form</button>
             </form>
         </div>
-
+        <p></p>
+        <p></p>
+        <p></p>
     </div>
 </div>
 

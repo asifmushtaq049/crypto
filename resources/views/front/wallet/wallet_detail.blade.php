@@ -14,7 +14,7 @@
     </div>
       <div class="row top-row">
         <div class="col-lg-4 top-data">
-          <img src="https://www.cryptocompare.com/media/30001977/antminer-x3.png?anchor=center&mode=crop&width=100&height=100" />
+          <img src="{{$data['wallet']->image}}" width="100" height="100" />
         </div>
         <div class="col-lg-4 top-data">
           Coins<br />
@@ -64,7 +64,7 @@
           @foreach($data['comments'] as $key => $comment)
           <div class="comment">
             <div class="comment-head">
-              {{$comment->user->name}} <input readonly name="stars" value="{{$comment->rating->stars}}" type="hidden" class="rating-tooltip-manual blue pull-right" data-filled="fa fa-star fa-2x rating-color" data-empty="fa fa-star-o fa-2x" data-fractions="2"/>
+              <a href="/profile/{{$comment->user->id}}">{{$comment->user->name}}</a> <input readonly name="stars" value="{{$comment->rating->stars}}" type="hidden" class="rating-tooltip-manual blue pull-right" data-filled="fa fa-star fa-2x rating-color" data-empty="fa fa-star-o fa-2x" data-fractions="2"/>
             </div>
             <div class="comment-text">
               {{$comment->text}}

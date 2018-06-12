@@ -14,7 +14,7 @@
     </div>
       <div class="row top-row">
         <div class="col-lg-4 top-data">
-          <img src="https://www.cryptocompare.com/media/30001977/antminer-x3.png?anchor=center&mode=crop&width=100&height=100" />
+          <img src="{{$data['company']->image}}" width="100" height="100" />
         </div>
         <div class="col-lg-4 top-data">
           Location<br />

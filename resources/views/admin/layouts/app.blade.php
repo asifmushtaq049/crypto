@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <link rel="stylesheet" href="{{ asset('css/timeline.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     @yield('css')
     <!-- Scripts -->
     <script>
@@ -27,5 +28,26 @@
 <script src="{{ asset("js/Chart.js") }}"></script>
 <script src="{{ asset("js/admin.js") }}"></script>
 @yield('script')
+<script>
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#img').attr('src', e.target.result);
+      $('#img').attr('width', 200);
+      $('#img').attr('height', 150);
+      $('#img').show();
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#image").change(function() {
+  readURL(this);
+});
+</script>
 </body>
 </html>

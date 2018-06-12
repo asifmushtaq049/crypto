@@ -15,7 +15,7 @@
     @foreach($wallets as $key => $wallet)
       <div class="row">
           <div class="col-sm-2">
-            <img src="https://www.cryptocompare.com/media/30001977/antminer-x3.png?anchor=center&mode=crop&width=100&height=100" />
+            <img src="{{$wallet->image}}" width="100" height="100" />
           </div>
           <div class="col-sm-3">
             Name <br />
