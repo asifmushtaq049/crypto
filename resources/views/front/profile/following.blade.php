@@ -1,0 +1,25 @@
+@extends('front.profile.index')
+@section('following', 'active')
+
+@section("profile-content")
+
+<h2>I'm Following</h2>
+<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+    <tbody>
+        @foreach(Auth::user()->following as $key => $value)
+        <tr class="odd gradeX">
+          <td><a href="/profile/{{$value->user->id}}">{{$value->user->name}}</a></td>
+            <!-- <td><a href="/posts/{{$value->id}}" style="color:#007bff;">{{ $value -> title}}</a></td>
+            <th>
+              <form action="{{ action('PostController@destroy', [$value->id]) }}" method="POST" class="inline">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <a class="btn btn-primary" href="{{ action('PostController@edit', [$value->id]) }}">Edit</a>
+              <input type="submit" class="btn btn-danger inline" value="Delete"/>
+              </form>
+            </th> -->
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+@endsection
