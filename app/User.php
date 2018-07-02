@@ -47,6 +47,11 @@ class User extends Authenticatable
          return $this->hasMany('App\Comment','user_id','id');
     }
 
+    public function wallet_rating() {
+
+         return $this->hasMany('App\WalletRating','user_id','id');
+    }
+
     public function following() {
          return $this->hasMany('App\Follower','follower_id','id');
     }

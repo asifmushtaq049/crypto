@@ -26,7 +26,8 @@
     <div class="form-group row">
         <label for="name" class="col-sm-4 col-form-label text-md-right">Name</label>
         <div class="col-md-6">
-            <input id="name" type="text" class="form-control" name="name" value="{{Auth::user()->name}}" required autofocus>
+            <input id="name" type="text" class="form-control" pattern="[A-Za-z]{3,}" name="name" value="{{Auth::user()->name}}" required autofocus>
+          <!--  <input id="name" type="text" name="firstname" pattern="[a-zA-Z]{1,}" title="Please Enter Valid name" class="form-control" value="{{Auth::user()->name}}" required autofocus> -->
         </div>
     </div>
 
@@ -34,7 +35,7 @@
         <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
 
         <div class="col-md-6">
-            <input id="email" type="email" class="form-control" name="email" value="{{Auth::user()->email}}" required>
+            <input id="email" type="email" class="form-control" name="email" value="{{Auth::user()->email}}"  readonly="email">
         </div>
     </div>
 

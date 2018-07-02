@@ -48,7 +48,7 @@
           @endif
           <form class="review-form" method="post" id="comment-form">
             @csrf
-            <h2>Leave a Review <input name="stars" type="hidden" class="rating-tooltip-manual blue pull-right" data-filled="fa fa-star fa-2x rating-color" data-empty="fa fa-star-o fa-2x" data-fractions="2"/></h2>
+            <h2>Leave a Review <input name="stars" value="2" type="hidden" class="rating-tooltip-manual blue pull-right" data-filled="fa fa-star fa-2x rating-color" data-empty="fa fa-star-o fa-2x" data-fractions="2"/></h2>
             <div class="leave-review">
                 <textarea name="text" required></textarea>
                 <button type="submit" class="btn btn-primary pull-right">SUBMIT REVIEW</button>

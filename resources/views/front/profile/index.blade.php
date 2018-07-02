@@ -11,9 +11,9 @@
   		<div class="col-md-3">
   			<div class="profile-sidebar">
   				<!-- SIDEBAR USERPIC -->
-  				<div class="profile-userpic">
+  				<!-- <div class="profile-userpic">
   					<img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
-  				</div>
+  				</div> -->
   				<!-- END SIDEBAR USERPIC -->
           <!-- <image> -->
             
@@ -76,16 +76,21 @@
 function readURL(input) {
 
   if (input.files && input.files[0]) {
+    if(input.files[0].size <= 0){
+      alert("File should not be empty");
+      $('#image').val("");
+      return;
+    }
     var reader = new FileReader();
-
     reader.onload = function(e) {
       $('#img').attr('src', e.target.result);
       $('#img').attr('width', 200);
       $('#img').attr('height', 150);
       $('#img').show();
     }
-
     reader.readAsDataURL(input.files[0]);
+  }else{
+
   }
 }
 
