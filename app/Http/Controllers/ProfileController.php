@@ -21,6 +21,8 @@ class ProfileController extends Controller
       return view('front.profile.posts')->with('posts', $posts);
     }
 
+
+
     public function setting(){
       return view('front.profile.setting');
     }
@@ -32,7 +34,6 @@ class ProfileController extends Controller
     public function followers(){
       return view('front.profile.followers');
     }
-
 
     public function update(Request $request){
       $rules = array(
@@ -57,6 +58,14 @@ class ProfileController extends Controller
         $user = Auth::user();
         $user->name = Input::get('name');
         $user->email = Input::get('email');
+        if (Input::has('image')) {
+          $image = Input::file('image');
+          $name = str_slug($request->name.$image->getRealPath()).'.'.$image->getClientOriginalExtension();
+          $destinationPath = public_path('/img/profile');
+          $imagePath = $destinationPath. "/".  $name;
+          $image->move($destinationPath, $name);
+          $user->image = "/img/profile/".$name;
+        }
         $user->update();
         Session::flash('flash_message', 'Profile Updated!');
         return view('front.profile.setting');

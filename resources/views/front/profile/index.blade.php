@@ -15,6 +15,15 @@
   					<img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
   				</div>
   				<!-- END SIDEBAR USERPIC -->
+          <!-- <image> -->
+            
+
+            <div class="l-md-12 centered">
+              <img id="img" src="{{Auth::user()->image}}"class="mx-auto rounded-circle" width="200" height="200" class="row" />
+              
+              
+            </div>
+
   				<!-- SIDEBAR USER TITLE -->
   				<div class="profile-usertitle">
   					<div class="profile-usertitle-name">
@@ -62,5 +71,27 @@
   	</div>
   </div>
 </section>
+<script src="{{ asset("js/app.js") }}"></script>
+<script>
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#img').attr('src', e.target.result);
+      $('#img').attr('width', 200);
+      $('#img').attr('height', 150);
+      $('#img').show();
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#image").change(function() {
+  readURL(this);
+});
+</script>
 
 @endsection

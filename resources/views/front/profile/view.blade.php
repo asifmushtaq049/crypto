@@ -16,6 +16,7 @@
   				</div>
   				<!-- END SIDEBAR USERPIC -->
   				<!-- SIDEBAR USER TITLE -->
+          
   				<div class="profile-usertitle">
   					<div class="profile-usertitle-name">
   						{{$data['user']->name}}

@@ -8,7 +8,7 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="{{ asset('front/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('front/img/cryptologo.png') }}" rel="icon">
   <link href="{{ asset('front/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -43,7 +43,7 @@
   <!--==========================
     Top Bar
   ============================-->
-  <section id="topbar" class="d-none d-lg-block">
+  <section id="topbar" class="d-none d-lg-block ">
     <div class="container clearfix">
       <div class="contact-info float-left">
         <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">contact@example.com</a>
@@ -95,9 +95,10 @@
     <div class="container">
 
       <div id="logo" class="pull-left">
-        <h1><a href="/" class="scrollto">CRYPTO<span>ONE</span></a></h1>
+        <h1><a href="" class="scrollto">CRYPTO<span>ONE</span></a></h1>
+        
         <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+         <a href="#body"><img src="img/logo.png" alt="" title="" /></a>
 
       </div>
 
