@@ -11,4 +11,7 @@ class Wallet extends Model
     {
         return $this->hasMany('App\WalletRating');
     }
+    public function wishlist(){
+        return $this->hasMany('App\WishList');
+    }
 }

@@ -11,12 +11,14 @@
   		<div class="col-md-3">
   			<div class="profile-sidebar">
   				<!-- SIDEBAR USERPIC -->
-  				<div class="profile-userpic">
-  					<img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
-  				</div>
+          <div class="l-md-12 centered">
+            <img id="img" src="{{$data['user']->image}}"class="mx-auto rounded-circle" width="200" height="200" class="row" />
+
+
+          </div>
   				<!-- END SIDEBAR USERPIC -->
   				<!-- SIDEBAR USER TITLE -->
-          
+
   				<div class="profile-usertitle">
   					<div class="profile-usertitle-name">
   						{{$data['user']->name}}

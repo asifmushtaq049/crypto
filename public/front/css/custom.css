@@ -361,5 +361,18 @@ body{
 }
 
 .admin-menu{
-  
+
+}
+
+.wishbtn{
+  background: none;
+  border: none;
+  font-size:30px;
+  cursor:pointer;
+}
+.wish-added{
+  color:red;
+}
+.wish-add{
+  color:orange;
 }

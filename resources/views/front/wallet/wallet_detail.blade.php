@@ -10,7 +10,20 @@
 
   <div class="container item">
     <div class="section-header">
-      <h2>{{$data['wallet']->name}}</h2>
+      <h2>{{$data['wallet']->name}}
+        <form action="" method="post" class="pull-right">
+          @csrf
+          @if(Auth::check())
+            @if($data['wallet']->wishlist->where('wallet_id',4)->where('user_id', 1)->first())
+              <button type="submit" name="wishadded" class="wishbtn"><i class="fa fa-heart wish-added"></i></button>
+            @else
+              <button type="submit" name="wishadd" class="wishbtn"><i class="fa fa-heart wish-add"></i></button>
+            @endif
+          @else
+          <a href="/login" class="btn btn-primary btn-sm twitter-color"><i class="fa fa-heart"></i> Login to add wishlist</a>
+          @endif
+        </form>
+      </h2>
     </div>
       <div class="row top-row">
         <div class="col-lg-4 top-data">

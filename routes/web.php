@@ -56,6 +56,10 @@ Route::get('/admin/article/{a}/edit', 'PostController@admin_edit')->middleware('
 Route::put('/admin/article/{a}/edit', 'PostController@admin_update')->middleware('is_admin');
 Route::delete('/admin/article/{a}', 'PostController@admin_destroy')->middleware('is_admin');
 
+// User Routes
+Route::get('/admin/user', 'ProfileController@all_users')->middleware('is_admin');
+Route::delete('/admin/user/{u}', 'ProfileController@user_destroy')->middleware('is_admin');
+
 //Front View Routes
 Route::get('/mining/equipment', 'EquipmentController@front');
 Route::get('/mining/equipment/{e}', 'EquipmentController@detail');

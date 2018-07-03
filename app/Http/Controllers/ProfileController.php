@@ -21,7 +21,16 @@ class ProfileController extends Controller
       return view('front.profile.posts')->with('posts', $posts);
     }
 
-
+    public function all_users(){
+      $users = User::all();
+      return view('admin.user.all')->with('users', $users);
+    }
+    
+    public function user_destroy($id)
+    {
+         User::find($id)->delete();
+         return redirect()->back();
+    }
 
     public function setting(){
       return view('front.profile.setting');

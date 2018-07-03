@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Wallet;
 use App\WalletComment;
 use App\WalletRating;
+use App\WishList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -151,30 +152,44 @@ class WalletController extends Controller
 
      public function comment(Request $request, $id){
        // read more on validation at http://laravel.com/docs/validation
-       $rules = array(
-           'text'      => 'required'
-         );
-
-       $validator = Validator::make(Input::all(), $rules);
-
-       // process the login
-       if ($validator->fails()) {
-           Session::flash('flash_error', 'Make sure comment and rating');
-           return redirect()->back();
-       } else {
-         $comment = new WalletComment;
-         $comment->text = $request->get('text');
-         $comment->wallet_id = $id;
-         $comment->user_id = auth()->user()->id;
-         $comment->save();
-
-         $rating = new WalletRating;
-         $rating->stars = $request->get('stars');
-         $rating->wallet_comment_id = $comment->id;
-         $rating->wallet_id = $id;
-         $rating->user_id = auth()->user()->id;
-         $rating->save();
+       if(Input::has('wishadd')){
+         $wish = new WishList;
+         $wish->wallet_id = $id;
+         $wish->user_id = auth()->user()->id;
+         $wish->save();
          return redirect()->back();
+       }
+       else if(Input::has('wishadded')){
+         $wish = WishList::where('wallet_id',$id)->where('user_id', auth()->user()->id);
+         $wish->delete();
+         return redirect()->back();
+       }
+       else{
+         $rules = array(
+             'text'      => 'required'
+           );
+
+         $validator = Validator::make(Input::all(), $rules);
+
+         // process the login
+         if ($validator->fails()) {
+             Session::flash('flash_error', 'Make sure comment and rating');
+             return redirect()->back();
+         } else {
+           $comment = new WalletComment;
+           $comment->text = $request->get('text');
+           $comment->wallet_id = $id;
+           $comment->user_id = auth()->user()->id;
+           $comment->save();
+
+           $rating = new WalletRating;
+           $rating->stars = $request->get('stars');
+           $rating->wallet_comment_id = $comment->id;
+           $rating->wallet_id = $id;
+           $rating->user_id = auth()->user()->id;
+           $rating->save();
+           return redirect()->back();
+         }
        }
      }
 }

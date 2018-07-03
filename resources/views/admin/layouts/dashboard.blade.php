@@ -91,6 +91,17 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-user-o fa-fw"></i> Users<span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li {{ (Request::is('*blank') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/user') }}">All Users</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
