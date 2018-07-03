@@ -11,4 +11,7 @@ class Equipment extends Model
     {
         return $this->hasMany('App\EquipmentRating');
     }
+    public function wishlist(){
+        return $this->hasMany('App\WishList');
+    }
 }

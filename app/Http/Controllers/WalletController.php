@@ -181,13 +181,14 @@ class WalletController extends Controller
            $comment->wallet_id = $id;
            $comment->user_id = auth()->user()->id;
            $comment->save();
-
-           $rating = new WalletRating;
-           $rating->stars = $request->get('stars');
-           $rating->wallet_comment_id = $comment->id;
-           $rating->wallet_id = $id;
-           $rating->user_id = auth()->user()->id;
-           $rating->save();
+           if(Input::has('stars')){
+             $rating = new WalletRating;
+             $rating->stars = $request->get('stars');
+             $rating->wallet_comment_id = $comment->id;
+             $rating->wallet_id = $id;
+             $rating->user_id = auth()->user()->id;
+             $rating->save();
+           }
            return redirect()->back();
          }
        }

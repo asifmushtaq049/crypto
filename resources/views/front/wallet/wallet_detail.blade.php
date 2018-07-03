@@ -14,7 +14,7 @@
         <form action="" method="post" class="pull-right">
           @csrf
           @if(Auth::check())
-            @if($data['wallet']->wishlist->where('wallet_id',4)->where('user_id', 1)->first())
+            @if($data['wallet']->wishlist->where('wallet_id',$data['wallet']->id)->where('user_id', Auth::user()->id)->first())
               <button type="submit" name="wishadded" class="wishbtn"><i class="fa fa-heart wish-added"></i></button>
             @else
               <button type="submit" name="wishadd" class="wishbtn"><i class="fa fa-heart wish-add"></i></button>
@@ -61,7 +61,11 @@
           @endif
           <form class="review-form" method="post" id="comment-form">
             @csrf
-            <h2>Leave a Review <input name="stars" value="2" type="hidden" class="rating-tooltip-manual blue pull-right" data-filled="fa fa-star fa-2x rating-color" data-empty="fa fa-star-o fa-2x" data-fractions="2"/></h2>
+            @if($data['wallet']->rating->where('wallet_id',$data['wallet']->id)->where('user_id', Auth::user()->id)->first())
+            <h2>Leave a Review <input name="stars" value="{{$data['wallet']->rating->where('wallet_id',$data['wallet']->id)->where('user_id', Auth::user()->id)->first()->stars}}" disabled type="hidden" class="rating-tooltip-manual blue pull-right" data-filled="fa fa-star fa-2x rating-color" data-empty="fa fa-star-o fa-2x" data-fractions="2"/></h2>
+            @else
+            <h2>Leave a Review <input name="stars" type="hidden" class="rating-tooltip-manual blue pull-right" data-filled="fa fa-star fa-2x rating-color" data-empty="fa fa-star-o fa-2x" data-fractions="2"/></h2>
+            @endif
             <div class="leave-review">
                 <textarea name="text" required></textarea>
                 <button type="submit" class="btn btn-primary pull-right">SUBMIT REVIEW</button>
@@ -77,7 +81,7 @@
           @foreach($data['comments'] as $key => $comment)
           <div class="comment">
             <div class="comment-head">
-              <a href="/profile/{{$comment->user->id}}">{{$comment->user->name}}</a> <input readonly name="stars" value="{{$comment->rating->stars}}" type="hidden" class="rating-tooltip-manual blue pull-right" data-filled="fa fa-star fa-2x rating-color" data-empty="fa fa-star-o fa-2x" data-fractions="2"/>
+              <a href="/profile/{{$comment->user->id}}">{{$comment->user->name}}</a>
             </div>
             <div class="comment-text">
               {{$comment->text}}

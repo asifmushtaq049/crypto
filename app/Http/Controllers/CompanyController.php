@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\CompanyComment;
 use App\CompanyRating;
+use App\WishList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -134,30 +135,45 @@ class CompanyController extends Controller
 
      public function comment(Request $request, $id){
        // read more on validation at http://laravel.com/docs/validation
-       $rules = array(
-           'text'      => 'required'
-         );
-
-       $validator = Validator::make(Input::all(), $rules);
-
-       // process the login
-       if ($validator->fails()) {
-           Session::flash('flash_error', 'Make sure comment and rating');
-           return redirect()->back();
-       } else {
-         $comment = new CompanyComment;
-         $comment->text = $request->get('text');
-         $comment->company_id = $id;
-         $comment->user_id = auth()->user()->id;
-         $comment->save();
-
-         $rating = new CompanyRating;
-         $rating->stars = $request->get('stars');
-         $rating->company_comment_id = $comment->id;
-         $rating->company_id = $id;
-         $rating->user_id = auth()->user()->id;
-         $rating->save();
+       if(Input::has('wishadd')){
+         $wish = new WishList;
+         $wish->company_id = $id;
+         $wish->user_id = auth()->user()->id;
+         $wish->save();
          return redirect()->back();
+       }
+       else if(Input::has('wishadded')){
+         $wish = WishList::where('company_id',$id)->where('user_id', auth()->user()->id);
+         $wish->delete();
+         return redirect()->back();
+       }
+       else{
+         $rules = array(
+             'text'      => 'required'
+           );
+
+         $validator = Validator::make(Input::all(), $rules);
+
+         // process the login
+         if ($validator->fails()) {
+             Session::flash('flash_error', 'Make sure comment and rating');
+             return redirect()->back();
+         } else {
+           $comment = new CompanyComment;
+           $comment->text = $request->get('text');
+           $comment->company_id = $id;
+           $comment->user_id = auth()->user()->id;
+           $comment->save();
+           if(Input::has('stars')){
+             $rating = new CompanyRating;
+             $rating->stars = $request->get('stars');
+             $rating->company_comment_id = $comment->id;
+             $rating->company_id = $id;
+             $rating->user_id = auth()->user()->id;
+             $rating->save();
+           }
+           return redirect()->back();
+         }
        }
      }
 }

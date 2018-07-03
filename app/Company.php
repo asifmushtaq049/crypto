@@ -11,4 +11,7 @@ class Company extends Model
     {
         return $this->hasMany('App\CompanyRating');
     }
+    public function wishlist(){
+        return $this->hasMany('App\WishList');
+    }
 }

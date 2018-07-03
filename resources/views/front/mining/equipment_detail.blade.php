@@ -10,7 +10,20 @@
 
   <div class="container item">
     <div class="section-header">
-      <h2>{{$data['equipment']->name}}</h2>
+      <h2>{{$data['equipment']->name}}
+        <form action="" method="post" class="pull-right">
+          @csrf
+          @if(Auth::check())
+            @if($data['equipment']->wishlist->where('equipment_id',$data['equipment']->id)->where('user_id', Auth::user()->id)->first())
+              <button type="submit" name="wishadded" class="wishbtn"><i class="fa fa-heart wish-added"></i></button>
+            @else
+              <button type="submit" name="wishadd" class="wishbtn"><i class="fa fa-heart wish-add"></i></button>
+            @endif
+          @else
+          <a href="/login" class="btn btn-primary btn-sm twitter-color"><i class="fa fa-heart"></i> Login to add wishlist</a>
+          @endif
+        </form>
+      </h2>
     </div>
       <div class="row top-row">
         <div class="col-lg-4 top-data">
@@ -120,7 +133,11 @@
           @endif
           <form class="review-form" method="post" id="comment-form">
             @csrf
+            @if($data['equipment']->rating->where('equipment_id',$data['equipment']->id)->where('user_id', Auth::user()->id)->first())
+            <h2>Leave a Review <input name="stars" value="{{$data['equipment']->rating->where('equipment_id',$data['equipment']->id)->where('user_id', Auth::user()->id)->first()->stars}}" disabled type="hidden" class="rating-tooltip-manual blue pull-right" data-filled="fa fa-star fa-2x rating-color" data-empty="fa fa-star-o fa-2x" data-fractions="2"/></h2>
+            @else
             <h2>Leave a Review <input name="stars" type="hidden" class="rating-tooltip-manual blue pull-right" data-filled="fa fa-star fa-2x rating-color" data-empty="fa fa-star-o fa-2x" data-fractions="2"/></h2>
+            @endif
             <div class="leave-review">
                 <textarea name="text" required></textarea>
                 <button type="submit" class="btn btn-primary pull-right">SUBMIT REVIEW</button>
@@ -136,7 +153,7 @@
           @foreach($data['comments'] as $key => $comment)
           <div class="comment">
             <div class="comment-head">
-              <a href="/profile/{{$comment->user->id}}">{{$comment->user->name}}</a> <input readonly name="stars" value="{{$comment->rating->stars}}" type="hidden" class="rating-tooltip-manual blue pull-right" data-filled="fa fa-star fa-2x rating-color" data-empty="fa fa-star-o fa-2x" data-fractions="2"/>
+              <a href="/profile/{{$comment->user->id}}">{{$comment->user->name}}</a>
             </div>
             <div class="comment-text">
               {{$comment->text}}
