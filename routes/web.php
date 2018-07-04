@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('front.layouts.main');
-});
+Route::get('/', 'HomeController@index');
 
 Route::get('/search', 'SearchController@search');
 
