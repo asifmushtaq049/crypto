@@ -96,7 +96,7 @@
 
       <div id="logo" class="pull-left">
         <h1><a href="" class="scrollto">CRYPTO<span>ONE</span></a></h1>
-        
+
         <!-- Uncomment below if you prefer to use an image logo -->
          <a href="#body"><img src="img/logo.png" alt="" title="" /></a>
 
